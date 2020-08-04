@@ -20,6 +20,7 @@ public class PintersetTestAutomation {
     public static void QuitDriver(){
         driver.quit();
     }
+    //Entering invalid email
     @Test
     public void signUp_1() throws InterruptedException {
 
@@ -34,6 +35,7 @@ public class PintersetTestAutomation {
         //System.out.println(actual);
         Assert.assertEquals(actual,expected);
     }
+    //Entering confirm password which don't match to password
     @Test
     public void signUp_2() throws InterruptedException {
         driver.navigate().refresh();
@@ -50,7 +52,9 @@ public class PintersetTestAutomation {
         Assert.assertEquals(actual,expected);
 
     }
+
     @Test
+    //Entering email on which account already exists
     public void signUp_3() throws InterruptedException {
         driver.navigate().refresh();
 
@@ -60,12 +64,13 @@ public class PintersetTestAutomation {
         driver.findElement(By.xpath("//*[@id=\"accountRegPassword\"]")).sendKeys("Check123");
         driver.findElement(By.xpath("//*[@id=\"confirmPassword\"]")).sendKeys("abcd@gmail.com");
         driver.findElement(By.xpath("//*[@id=\"ca-bottom\"]/div/div/div[2]/div[2]/div[1]/div/label")).click();
-        String actual=driver.findElement(By.ByCssSelector("#validationErrors")).getText();
-        String expected="Passwords do not match";
+        String actual=driver.findElement(By.cssSelector("#validationErrors > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")).getText();
+        String expected="sign in to your existing IEEE account";
         System.out.println(actual);
         Assert.assertEquals(actual,expected);
 
     }
+
 
 
 }
