@@ -16,14 +16,13 @@ public class IEEETestAutomationLogin  {
         driver.manage().window().maximize();
 
     }
-
+    @AfterClass
     public static void QuitDriver(){
         driver.quit();
     }
     //Entering invalid email
     @Test
     public void logIn_1() throws InterruptedException {
-
         driver.findElement(By.xpath("//*[@id=\"mn-signin-link\"]")).click();
         Thread.sleep(20000);
         driver.findElement(By.xpath("//*[@id=\"username\"]")).sendKeys("FirstName");
@@ -57,7 +56,9 @@ public class IEEETestAutomationLogin  {
     public void logIn_3() throws InterruptedException {
 
         driver.navigate().refresh();
+        driver.switchTo().alert().accept();
         Thread.sleep(20000);
+        driver.findElement(By.xpath("//*[@id=\"username\"]")).sendKeys("");
         driver.findElement(By.xpath("//*[@id=\"username\"]")).sendKeys("shouzebhasan99@gamil.com");
         driver.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("lastName");
         driver.findElement(By.xpath("//*[@id=\"modalWindowRegisterSignInBtn\"]")).click();
@@ -74,7 +75,9 @@ public class IEEETestAutomationLogin  {
     public void logIn_4() throws InterruptedException {
 //assume test case failed
         driver.navigate().refresh();
+        driver.switchTo().alert().accept();
         Thread.sleep(20000);
+        driver.findElement(By.xpath("//*[@id=\"username\"]")).sendKeys("");
         driver.findElement(By.xpath("//*[@id=\"username\"]")).sendKeys("FirstName");
         driver.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("lastName");
         driver.findElement(By.xpath("//*[@id=\"modalWindowRegisterSignInBtn\"]")).click();
@@ -87,10 +90,12 @@ public class IEEETestAutomationLogin  {
     //Entering invalid password but still home page displayed
     @Test
     public void logIn_5() throws InterruptedException {
-//assume test case failed
+        //assume test case failed
         driver.navigate().refresh();
 
+        driver.switchTo().alert().accept();
         Thread.sleep(20000);
+        driver.findElement(By.xpath("//*[@id=\"username\"]")).sendKeys("");
         driver.findElement(By.xpath("//*[@id=\"username\"]")).sendKeys("shouzebhasan99@gamil.com");
         driver.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("lastName");
         driver.findElement(By.xpath("//*[@id=\"modalWindowRegisterSignInBtn\"]")).click();
