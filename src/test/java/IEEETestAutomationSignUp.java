@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class PintersetTestAutomation {
+public class IEEETestAutomationSignUp {
     public static WebDriver driver;
     @BeforeClass
     public static void StartingDriver(){
@@ -31,9 +31,10 @@ public class PintersetTestAutomation {
         driver.findElement(By.xpath("//*[@id=\"emailId\"]")).sendKeys("abcd");
         driver.findElement(By.xpath("//*[@id=\"ca-bottom\"]/div/div/div[2]/div[2]/div[1]/div/label")).click();
         String actual=driver.findElement(By.cssSelector("#createCustEmailId > div:nth-child(1) > div:nth-child(3)")).getText();
+
         String expected="Please enter a valid email address";
         //System.out.println(actual);
-        Assert.assertEquals(actual,expected);
+        Assert.assertEquals(expected,actual);
     }
     //Entering confirm password which don't match to password
     @Test
@@ -49,7 +50,7 @@ public class PintersetTestAutomation {
         String actual=driver.findElement(By.cssSelector("div.col-xs-12:nth-child(4) > div:nth-child(1) > div:nth-child(3)")).getText();
         String expected="Passwords do not match";
         //System.out.println(actual);
-        Assert.assertEquals(actual,expected);
+        Assert.assertEquals(expected,actual);
 
     }
 
@@ -57,52 +58,53 @@ public class PintersetTestAutomation {
     //Entering no last name
     public void signUp_3() throws InterruptedException {
         driver.navigate().refresh();
-
         driver.findElement(By.xpath("//*[@id=\"firstName\"]")).sendKeys("FirstName");
-
-        driver.findElement(By.xpath("//*[@id=\"emailId\"]")).sendKeys("shouzebhasan@gmail.com");
+        driver.findElement(By.xpath("//*[@id=\"lastName\"]")).sendKeys("");
+        driver.findElement(By.xpath("//*[@id=\"emailId\"]")).sendKeys("shouzeb@gmail.com");
         driver.findElement(By.xpath("//*[@id=\"accountRegPassword\"]")).sendKeys("Check123");
-        driver.findElement(By.xpath("//*[@id=\"confirmPassword\"]")).sendKeys("Check123");
+        driver.findElement(By.xpath("//*[@id=\"confirmPassword\"]")).sendKeys("abcd@gmail.com");
         driver.findElement(By.xpath("//*[@id=\"ca-bottom\"]/div/div/div[2]/div[2]/div[1]/div/label")).click();
         String actual=driver.findElement(By.cssSelector("div.col-sm-4:nth-child(3) > div:nth-child(1) > div:nth-child(3)")).getText();
-        String expected="Please enter a last / surname";
-        System.out.println(actual);
-        Assert.assertEquals(actual,expected);
 
+        String expected1="Please enter a last / surname";
+        System.out.println(actual);
+        Assert.assertEquals("Please enter a last / surname",actual);
     }
+
     @Test
     //Entering everything perfectly but signup fails
     public void signUp_4() throws InterruptedException {
+        //assume Test failed
         driver.navigate().refresh();
 
         driver.findElement(By.xpath("//*[@id=\"firstName\"]")).sendKeys("FirstName");
         driver.findElement(By.xpath("//*[@id=\"lastName\"]")).sendKeys("lastName");
-        driver.findElement(By.xpath("//*[@id=\"emailId\"]")).sendKeys("shouzebhasan9@gmail.com");
+        driver.findElement(By.xpath("//*[@id=\"emailId\"]")).sendKeys("shouzeb@gmail.com");
         driver.findElement(By.xpath("//*[@id=\"accountRegPassword\"]")).sendKeys("Check123");
         driver.findElement(By.xpath("//*[@id=\"confirmPassword\"]")).sendKeys("Check123");
         driver.findElement(By.xpath("//*[@id=\"ca-bottom\"]/div/div/div[2]/div[2]/div[1]/div/label")).click();
-        String actual=driver.findElement(By.cssSelector("#validationErrors > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")).getText();
-
-        //String expected="sign in to your existing IEEE account";
+        String actual=driver.findElement(By.cssSelector("div.col-xs-12:nth-child(4) > div:nth-child(1) > div:nth-child(3)")).getText();
+        String expected="Passwords do not match";
         //System.out.println(actual);
-        //Assert.assertEquals(actual,expected);
+        Assert.assertEquals(expected,actual);
 
     }
     @Test
     //Entering same password in both password fields but signup fails
     public void signUp_5() throws InterruptedException {
+        //assume Test failed
         driver.navigate().refresh();
 
         driver.findElement(By.xpath("//*[@id=\"firstName\"]")).sendKeys("FirstName");
         driver.findElement(By.xpath("//*[@id=\"lastName\"]")).sendKeys("lastName");
-        driver.findElement(By.xpath("//*[@id=\"emailId\"]")).sendKeys("shouzebhasan9@gmail.com");
+        driver.findElement(By.xpath("//*[@id=\"emailId\"]")).sendKeys("shouzeb@gmail.com");
         driver.findElement(By.xpath("//*[@id=\"accountRegPassword\"]")).sendKeys("Check123");
         driver.findElement(By.xpath("//*[@id=\"confirmPassword\"]")).sendKeys("Check123");
         driver.findElement(By.xpath("//*[@id=\"ca-bottom\"]/div/div/div[2]/div[2]/div[1]/div/label")).click();
-        String actual=driver.findElement(By.cssSelector("#validationErrors > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")).getText();
-        //String expected="sign in to your existing IEEE account";
+        String actual=driver.findElement(By.cssSelector("div.col-xs-12:nth-child(4) > div:nth-child(1) > div:nth-child(3)")).getText();
+        String expected="Passwords do not matchs";
         //System.out.println(actual);
-        //Assert.assertEquals(actual,expected);
+        Assert.assertEquals(expected,actual);
 
     }
 
